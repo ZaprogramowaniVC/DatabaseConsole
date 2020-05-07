@@ -13,15 +13,18 @@ namespace DatabaseConsole
     {
         static void Main(string[] args)
         {
+
             var contactsDAL = new ContactsDAL();
 
-            contactsDAL.DeleteContact(7002);
-          
-            var contacts = contactsDAL.GetContacts();
 
-            foreach(Contact contact in contacts)
+            Console.WriteLine("Proszę podać imię kontaktów które mam pokazać: ");
+            var name = Console.ReadLine();
+
+            var myContacts = contactsDAL.GetContactsByName(name);
+
+            foreach (var contact in myContacts)
             {
-                Console.WriteLine(contact.ToString());
+                Console.WriteLine(contact);
             }
 
             Console.ReadKey();

@@ -45,10 +45,35 @@ namespace DatabaseConsole.Services
             return contacts;
         }
 
-        //TODO: Method to get Contact by Id
         public Contact GetContactById(int contactId)
         {
-            return null;
+            string query = $@"SELECT * FROM 
+                             Contacts
+                             WHERE Id = @Id";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@Id", contactId);
+
+                conn.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    var result = new Contact();
+
+                    result.Name = reader["Name"].ToString();
+                    result.Surname = reader["Surname"].ToString();
+                    result.PhoneNumber = reader["PhoneNumber"].ToString();
+                    result.Sex = (SexDictionary)Convert.ToInt32(reader["SexId"]);
+
+                    return result;
+                }
+
+                return null;
+            }
         }
 
 
@@ -108,6 +133,39 @@ namespace DatabaseConsole.Services
                 conn.Open();
 
                 command.ExecuteNonQuery();
+            }
+        }
+
+
+        public List<Contact> GetContactsByName(string contactName)
+        {
+            string query = $@"SELECT * FROM Contacts
+                            WHERE Name = @Name";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@Name", contactName);
+
+                conn.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                var result = new List<Contact>();
+
+                while (reader.Read())
+                {
+                    var contact = new Contact();
+
+                    contact.Name = reader["Name"].ToString();
+                    contact.Surname = reader["Surname"].ToString();
+                    contact.PhoneNumber = reader["PhoneNumber"].ToString();
+                    contact.Sex = (SexDictionary)Convert.ToInt32(reader["SexId"]);
+
+                    result.Add(contact);
+                }
+
+                return result;
             }
         }
     }
