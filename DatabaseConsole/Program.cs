@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DatabaseConsole.Model;
-using DatabaseConsole.Services;
+using DatabaseConsole.Data.Services;
 
 namespace DatabaseConsole
 {
@@ -15,6 +9,7 @@ namespace DatabaseConsole
         {
 
             var contactsDAL = new ContactsDAL();
+
 
 
             Console.WriteLine("Proszę podać imię kontaktów które mam pokazać: ");

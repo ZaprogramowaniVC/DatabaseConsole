@@ -1,4 +1,4 @@
-﻿using DatabaseConsole.Model;
+﻿using DatabaseConsole.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseConsole.Services
+namespace DatabaseConsole.Data.Services
 {
     public class ContactsDAL
     {

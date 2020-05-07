@@ -1,5 +1,5 @@
 ﻿
-namespace DatabaseConsole.Model
+namespace DatabaseConsole.Data.Model
 {
     public class Contact
     {
