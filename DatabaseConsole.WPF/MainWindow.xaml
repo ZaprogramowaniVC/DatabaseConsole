@@ -32,7 +32,7 @@
             <TextBlock Text="Płeć" Grid.Column="3"/>
             <TextBlock Text="Numer telefonu" Grid.Column="4"/>
         </Grid>
-        <ListView x:Name="DataContainer" Grid.Row="2">
+        <ListView x:Name="DataContainer" Grid.Row="2" SelectionChanged="DataContainer_SelectionChanged" >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -89,7 +89,10 @@
             <TextBox Grid.Column="1" Grid.Row="1" x:Name="SurnameTextbox"/>
 
             <TextBlock Text="Płeć" Grid.Row="2"/>
-            <TextBox Grid.Column="1"  Grid.Row="2" x:Name="SexTextbox"/>
+            <ComboBox Grid.Column="1" Grid.Row="2" x:Name="SexCombobox" Height="25">
+                <ComboBoxItem>Mężczyzna</ComboBoxItem>
+                <ComboBoxItem>Kobieta</ComboBoxItem>
+            </ComboBox>
 
             <TextBlock Text="Numer telefonu" Grid.Row="3"/>
             <TextBox Grid.Column="1" Grid.Row="3" x:Name="PhoneNumberTextbox"/>
@@ -102,9 +105,9 @@
                         <Setter Property="Margin" Value="5.5"/>
                     </Style>
                 </StackPanel.Resources>
-                <Button/>
+                <Button Content="Nowy" Click="NewButton_Click"/>
                 <Button Content="Zapisz" Click="SaveButton_Click"/>
-                <Button/>
+                <Button Content="Usuń" Click="DeleteButton_Click"/>
             </StackPanel>
         </Grid>
         
