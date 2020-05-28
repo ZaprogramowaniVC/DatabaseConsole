@@ -74,6 +74,12 @@ namespace DatabaseConsole.WPF
         {
             currentContact = (Contact)((ListView)sender).SelectedItem;
 
+            if (currentContact == null)
+            {
+                currentContact = new Contact();
+                return;
+            }
+
             if (currentContact != null)
             {
                 NameTextbox.Text = currentContact.Name;
@@ -100,10 +106,11 @@ namespace DatabaseConsole.WPF
                 if (result == MessageBoxResult.Yes)
                 {
                     contactsDAL.DeleteContact(currentContact.Id);
+                    ClearFields();
+                    ReloadData();
                 }
             }
 
-            ReloadData();
         }
     }
 }
